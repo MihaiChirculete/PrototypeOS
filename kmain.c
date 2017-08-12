@@ -1,3 +1,4 @@
+#include "ports/ports.c"
 #include "drivers/screen.c"
 
 void kmain()
