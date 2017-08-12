@@ -13,10 +13,7 @@ void kprint(char c, char attr, int x, int y)
 	fb[offset + 1] = attr;
 }
 
-void kprint_str_at(char* msg, char attr, int x, int y)
-{
-	int i;
-}
+
 
 void clear_screen()
 {
