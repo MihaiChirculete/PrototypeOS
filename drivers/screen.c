@@ -51,6 +51,40 @@ void kprint_string(char msg[], char attr, int x, int y)
 	}
 }
 
+// Draw a box
+void draw_box(int x, int y, int width, int height, char attr)
+{
+	// ╔ -> 201
+	// ╗ -> 187
+
+	// ║ -> 186
+
+	// ╚ -> 200
+	// ╝ -> 188
+	// ═ -> 205
+
+	int i;
+
+	kprint(201, attr, x, y);	// top left corner
+	for(i=1; i<width; i++)
+		kprint(205, attr, x+i, y);	// top border
+	kprint(187, attr, x+width, y);	// top right corner
+
+	// left and right border
+	for(i=1; i<height; i++)
+	{
+		kprint(186, attr, x, y+i);
+		kprint(186, attr, x+width, y+i);
+	}
+
+	kprint(200, attr, x, y+height);		// bottom left corner
+	for(i=1; i<width; i++)
+		kprint(205, attr, x+i, y+height);	// bottom border
+
+	kprint(188, attr, x+width, y+height);	// bottom right corner
+
+}
+
 // Writes a given string starting from the cursor's position
 void write(char msg[], char attr)
 {
