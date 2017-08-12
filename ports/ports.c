@@ -1,27 +1,27 @@
-unsigned char port_byte_in ( unsigned short port ) {
-	// A handy C wrapper function that reads a byte from the specified port
-	// "= a " ( result ) means : put AL register in variable RESULT when finished
-	// " d " ( port ) means : load EDX with port
-	
-	unsigned char result ;
-	__asm__ ( "in %% dx, %% al" : " = a " ( result ) : " d " ( port ));
-	
-	return result ;
-}
+/* outb
+	Sends the given data to the given I/O port. Defined in io.s
+	@param port The I/O port to send the data to
+	@param data The data to send to the I/O port
+*/
+void outb(unsigned short port, unsigned char data);
 
-void port_byte_out ( unsigned short port , unsigned char data ) {
-	// " a " ( data ) means : load EAX with data
-	// " d " ( port ) means : load EDX with port
-	__asm__ ( " out %% al , %% dx " : : " a " ( data ) , " d " ( port ));
-}
+/* The I/O ports */
+#define FB_COMMAND_PORT 0x3D4
+#define FB_DATA_PORT 0x3D5
 
-unsigned short port_word_in ( unsigned short port ) {
-	unsigned short result ;
-	__asm__ ( " in %% dx , %% ax " : " = a " ( result ) : " d " ( port ));
-	
-	return result ;
-}
+/* The I/O port commands */
+#define FB_HIGH_BYTE_COMMAND 14
+#define FB_LOW_BYTE_COMMAND 15
 
-void port_word_out ( unsigned short port , unsigned short data ) {
-	__asm__ ( " out %% ax , %% dx " : : " a " ( data ) , " d " ( port ));
+/** fb_move_cursor:
+* Moves the cursor of the framebuffer to the given position
+*
+* @param pos The new position of the cursor
+*/
+void fb_move_cursor(unsigned short pos)
+{
+	outb(FB_COMMAND_PORT, FB_HIGH_BYTE_COMMAND);
+	outb(FB_DATA_PORT,((pos >> 8) & 0x00FF));
+	outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
+	outb(FB_DATA_PORT,pos & 0x00FF);
 }
