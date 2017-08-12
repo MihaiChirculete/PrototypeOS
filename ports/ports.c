@@ -18,8 +18,10 @@ void outb(unsigned short port, unsigned char data);
 *
 * @param pos The new position of the cursor
 */
-void fb_move_cursor(unsigned short pos)
+void fb_move_cursor(int col, int row)
 {
+	unsigned short pos=(row*80) + col;
+
 	outb(FB_COMMAND_PORT, FB_HIGH_BYTE_COMMAND);
 	outb(FB_DATA_PORT,((pos >> 8) & 0x00FF));
 	outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
