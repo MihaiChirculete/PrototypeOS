@@ -1,8 +1,3 @@
-#define MAX_ROWS 25
-#define MAX_COLS 80
-
-#define WHITE_ON_BLACK 0x0f
-
 int cursor_x = 0, cursor_y = 0;
 
 void kprint(char c, char attr, int x, int y)
