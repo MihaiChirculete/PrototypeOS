@@ -85,8 +85,8 @@ void isrs_install()
 *  corresponds to each and every exception. We get the correct
 *  message by accessing like:
 *  exception_message[interrupt_number] */
-/*
-unsigned char *exception_messages[] =
+
+char *exception_messages[] =
 {
     "Division By Zero",
     "Debug",
@@ -121,7 +121,7 @@ unsigned char *exception_messages[] =
     "Reserved",
     "Reserved",
 };
-*/
+
 
 /* All of our Exception handling Interrupt Service Routines will
 *  point to this function. This will tell us what exception has
@@ -137,7 +137,7 @@ void _fault_handler(struct regs *r)
         /* Display the description for the Exception that occurred.
         *  In this tutorial, we will simply halt the system using an
         *  infinite loop */
-        //write(exception_messages[r->int_no], RED_ON_BLACK);
+        write(exception_messages[r->int_no], RED_ON_BLACK);
         for (;;);
     }
 }

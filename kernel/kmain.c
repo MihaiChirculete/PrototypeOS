@@ -6,6 +6,7 @@
 #include "gdt.h"
 #include "idt.h"
 #include "isrs.c"
+#include "irq.c"
 
 void kmain()
 {	
@@ -30,7 +31,7 @@ void kmain()
 	
 	gdt_install();	// setup the gdt
 	idt_install();	// setup the idt
-
 	isrs_install();	// setup the isrs
+	irq_install();	// setup the irq
 	
 }
