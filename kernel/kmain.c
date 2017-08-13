@@ -1,8 +1,10 @@
+#include "system.h"
 #include "../ports/ports.c"
 #include "../utils/str_utils.c"
 #include "../drivers/screen.h"
 #include "../drivers/screen.c"
 #include "gdt.h"
+#include "idt.h"
 
 void kmain()
 {	
@@ -27,6 +29,7 @@ void kmain()
 
 	write(kernel_loaded, LIGHTGREEN_ON_BLACK);
 	
-	gdt_install();
+	gdt_install();	// setup the gdt
+	idt_install();	// setup the idt
 	
 }
