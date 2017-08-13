@@ -1,3 +1,6 @@
+void scroll_up();
+void clear_screen();
+
 int cursor_x = 0, cursor_y = 0;
 
 void kprint(char c, char attr, int x, int y)
@@ -35,6 +38,13 @@ void kprint_string(char msg[], char attr, int x, int y)
 		{
 			x = 0;
 			y++;
+
+			// if bottom is reached start scrolling
+			if(y>MAX_ROWS-2)
+			{
+				y=MAX_ROWS-2;
+				scroll_up();
+			}
 
 			// Update the cursor
 			fb_move_cursor(x, y);
@@ -102,4 +112,20 @@ void clear_screen()
 	// update the global variables that keep track of the cursor
 	cursor_x = 0;
 	cursor_y = 0;
+}
+
+void scroll_up()
+{
+	char *fb = (char *) 0x000B8000;		// frame buffer starting address
+
+	int offset1, offset2, i, j;
+	for(i=0; i<MAX_ROWS-1; i++)
+		for(j=0; j<MAX_COLS; j++)
+		{
+			offset1  = (i * MAX_COLS + j) * 2;
+			offset2 = ((i+1) * MAX_COLS + j) * 2;
+
+			fb[offset1] = fb[offset2];
+			fb[offset1+1] = fb[offset2+1];
+		}
 }
