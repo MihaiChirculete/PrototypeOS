@@ -2,6 +2,7 @@
 #include "utils/str_utils.c"
 #include "drivers/screen.h"
 #include "drivers/screen.c"
+#include "gdt/gdt.h"
 
 void kmain()
 {	
@@ -12,7 +13,6 @@ void kmain()
 	char os_msg3[] = {200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188, '\n', '\0'};
 
 	char kernel_loaded[] = "Kernel successfully loaded!\n";
-	char gdt_setup[] = "Initializing the General Descriptor Table...\n";
 	/***************************************************************************************************/
 
 	int center = 40 - strlen(os_msg2)/2;
@@ -26,41 +26,7 @@ void kmain()
 	kprint_string(os_msg3, WHITE_ON_BLACK, center, 2);
 
 	write(kernel_loaded, LIGHTGREEN_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-	write(gdt_setup, WHITE_ON_BLACK);
-
+	
+	gdt_install();
 	
 }
