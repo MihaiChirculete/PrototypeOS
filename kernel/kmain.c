@@ -1,8 +1,8 @@
-#include "ports/ports.c"
-#include "utils/str_utils.c"
-#include "drivers/screen.h"
-#include "drivers/screen.c"
-#include "gdt/gdt.h"
+#include "../ports/ports.c"
+#include "../utils/str_utils.c"
+#include "../drivers/screen.h"
+#include "../drivers/screen.c"
+#include "gdt.h"
 
 void kmain()
 {	

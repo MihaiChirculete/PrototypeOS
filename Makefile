@@ -30,10 +30,10 @@ os.iso: kernel.elf
 		-o os.iso \
 		iso
 
-%.o: %.c
+%.o: kernel/%.c
 	$(CC) $(CFLAGS) $< -o $@
 
-%.o: %.s
+%.o: kernel/%.s
 	$(AS) $(ASFLAGS) $< -o $@
 
 clean:
