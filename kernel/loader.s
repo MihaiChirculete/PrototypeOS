@@ -29,6 +29,8 @@ CHECKSUM equ -MAGIC_NUMBER		; calculate the checksum
 
 KERNEL_STACK_SIZE equ 4096 ; size of stack in bytes
 
+%include "kernel/isrs.s"
+
 section .bss
 	align 4							; align at 4 bytes					
 	kernel_stack:					; label points to beginning of memory
@@ -36,7 +38,7 @@ section .bss
 
 
 
-section .text:			; start of the text (code) section
+section .text			; start of the text (code) section
 	align 4				; the code must be 4 byte aligned
 	dd MAGIC_NUMBER		; write the magic number to the machine code,
 	dd FLAGS 			; the flags,
@@ -81,4 +83,3 @@ extern _idtp
 _idt_load:
     lidt [_idtp]
     ret
-    

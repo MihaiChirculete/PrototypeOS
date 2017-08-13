@@ -51,26 +51,18 @@ void gdt_set_gate(int num, unsigned long base, unsigned long limit, unsigned cha
 *  new segment registers */
 void gdt_install()
 {
-	// debug messages
-	char gdt_setup[] = "General Descriptor Table setup started...\n";
-	char gdt_pointer_and_limit[] = "GDT pointer and limit set!\n";
-	char gdt_null_desc[] = "NULL descriptor set!\n";
-	char gdt_cs_desc[] = "Code Segment descriptor set!\n";
-	char gdt_data_desc[] = "Data Segment descriptor set!\n";
-	char gdt_flushed[] = "GDT flushed!\n";
-
-	write(gdt_setup, WHITE_ON_BLACK);
+	write("General Descriptor Table setup started...\n", WHITE_ON_BLACK);
 
     /* Setup the GDT pointer and limit */
     _gp.limit = (sizeof(struct gdt_entry) * 3) - 1;
     _gp.base = (addr)&gdt;
 
-    write(gdt_pointer_and_limit, LIGHTGREEN_ON_BLACK);
+    write("GDT pointer and limit set!\n", LIGHTGREEN_ON_BLACK);
 
     /* Our NULL descriptor */
     gdt_set_gate(0, 0, 0, 0, 0);
 
-    write(gdt_null_desc, LIGHTGREEN_ON_BLACK);
+    write("NULL descriptor set!\n", LIGHTGREEN_ON_BLACK);
 
     /* The second entry is our Code Segment. The base address
     *  is 0, the limit is 4GBytes, it uses 4KByte granularity,
@@ -79,17 +71,17 @@ void gdt_install()
     *  to see exactly what each value means */
     gdt_set_gate(1, 0, 0xFFFFFFFF, 0x9A, 0xCF);
 
-    write(gdt_cs_desc, LIGHTGREEN_ON_BLACK);
+    write("Code Segment descriptor set!\n", LIGHTGREEN_ON_BLACK);
 
     /* The third entry is our Data Segment. It's EXACTLY the
     *  same as our code segment, but the descriptor type in
     *  this entry's access byte says it's a Data Segment */
     gdt_set_gate(2, 0, 0xFFFFFFFF, 0x92, 0xCF);
 
-    write(gdt_data_desc, LIGHTGREEN_ON_BLACK);
+    write("Data Segment descriptor set!\n", LIGHTGREEN_ON_BLACK);
 
     /* Flush out the old GDT and install the new changes! */
     gdt_flush();
 
-    write(gdt_flushed, LIGHTGREEN_ON_BLACK);
+    write("GDT flushed!\n", LIGHTGREEN_ON_BLACK);
 }

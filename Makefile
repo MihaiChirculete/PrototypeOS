@@ -4,7 +4,7 @@ CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 		-nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
 
-LDFLAGS = -T link.ld -melf_i386
+LDFLAGS = -T link.ld -melf_i386 -I "./"
 
 AS = nasm
 ASFLAGS = -f elf

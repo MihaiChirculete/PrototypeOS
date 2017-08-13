@@ -56,23 +56,18 @@ void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, uns
 /* Installs the IDT */
 void idt_install()
 {
-	// debug messages
-	char idt_setup[] = "Interrupt Descriptor Table setup started...\n";
-	char idt_pointer_and_limit[] = "IDT pointer and limit set!\n";
-	char idt_flushed[] = "IDT flushed!\n";
-
-	write(idt_setup, WHITE_ON_BLACK);
+	write("Interrupt Descriptor Table setup started...\n", WHITE_ON_BLACK);
 
     /* Sets the special IDT pointer up, just like in 'gdt.c' */
     _idtp.limit = (sizeof (struct idt_entry) * 256) - 1;
     _idtp.base = (addr)&idt;
 
-    write(idt_pointer_and_limit, LIGHTGREEN_ON_BLACK);
+    write("IDT pointer and limit set!\n", LIGHTGREEN_ON_BLACK);
 
     /* Clear out the entire IDT, initializing it to zeros */
     memset((void*)&idt, 0, sizeof(struct idt_entry) * 256);
 
-    write(idt_flushed, LIGHTGREEN_ON_BLACK);
+    write("IDT flushed!\n", LIGHTGREEN_ON_BLACK);
 
     /* Add any new ISRs to the IDT here using idt_set_gate */
 
