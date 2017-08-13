@@ -37,4 +37,4 @@ os.iso: kernel.elf
 	$(AS) $(ASFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o *.elf os.iso
+	rm -rf *.o *.elf os.iso iso/boot/kernel.elf

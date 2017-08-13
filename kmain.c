@@ -12,6 +12,7 @@ void kmain()
 	char os_msg3[] = {200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188, '\n', '\0'};
 
 	char kernel_loaded[] = "Kernel successfully loaded!\n";
+	char gdt_setup[] = "Initializing the General Descriptor Table...\n";
 	/***************************************************************************************************/
 
 	int center = 40 - strlen(os_msg2)/2;
@@ -24,6 +25,42 @@ void kmain()
 	kprint_string(os_msg2, WHITE_ON_BLACK, center, 1);
 	kprint_string(os_msg3, WHITE_ON_BLACK, center, 2);
 
-	write(kernel_loaded, 0x0f);
+	write(kernel_loaded, LIGHTGREEN_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+	write(gdt_setup, WHITE_ON_BLACK);
+
 	
 }
